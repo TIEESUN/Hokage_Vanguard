@@ -5,6 +5,13 @@ import Seo from "../components/seo"
 import researchersData from "../data/researchers.json"
 import "../styles/home.css"
 
+// researchers.json shape: { "researchers": [ { slug, name, ... } ] }
+const RESEARCHERS_BY_SLUG = Object.fromEntries(
+  (researchersData?.researchers || [])
+    .filter(r => r?.slug)
+    .map(r => [r.slug, r])
+)
+
 // Page query kept so the template stays compatible with the gatsby-node
 // `context: { id }` passed in for index.md. The data isn't used.
 export const pageQuery = graphql`
@@ -251,10 +258,10 @@ const CardModal = ({ onClose }) => {
         </button>
         <div className="hv-modal-card-row">
           <div className="hv-modal-card">
-            <HoloCard data={researchersData["muhammad-sawood"]} />
+            <HoloCard data={RESEARCHERS_BY_SLUG["muhammad-sawood"]} />
           </div>
           <div className="hv-modal-card">
-            <HoloCard data={researchersData["sarah-jawaid"]} />
+            <HoloCard data={RESEARCHERS_BY_SLUG["sarah-jawaid"]} />
           </div>
         </div>
       </div>

@@ -1,12 +1,6 @@
 backend:
   name: git-gateway
   branch: main
-  commit_messages:
-    create: "Create {{collection}} '{{slug}}'"
-    update: "Update {{collection}} '{{slug}}'"
-    delete: "Delete {{collection}} '{{slug}}'"
-    uploadMedia: "[skip ci] Upload '{{path}}'"
-    deleteMedia: "[skip ci] Delete '{{path}}'"
 
 media_folder: "static/assets"
 public_folder: "/assets"
@@ -53,7 +47,28 @@ collections:
           - { label: "Profile URL", name: "profileUrl", widget: "string", required: false, hint: "Link to profile" }
       
       - { label: "Body", name: "body", widget: "markdown", hint: "Main content goes here." }
-      
+
+  - name: authors
+    label: "Author Profiles"
+    files:
+      - name: researchers
+        label: "Authors"
+        file: "src/data/researchers.json"
+        fields:
+          - name: researchers
+            label: "Authors"
+            label_singular: "Author"
+            widget: list
+            fields:
+              - { name: name, label: "Full Name", widget: string }
+              - { name: slug, label: "Slug (lowercase-with-dashes)", widget: string }
+              - { name: photo, label: "Photo", widget: image, required: false }
+              - { name: title, label: "Job Title", widget: string, required: false }
+              - { name: bio, label: "Bio", widget: text, required: false }
+              - { name: linkedinUrl, label: "LinkedIn URL", widget: string, required: false }
+              - { name: githubUrl, label: "GitHub URL", widget: string, required: false }
+              - { name: twitterUrl, label: "Twitter/X URL", widget: string, required: false }
+
   - name: "publications"
     label: "Publications"
     label_singular: "Publication"

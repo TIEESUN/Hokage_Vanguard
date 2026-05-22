@@ -5,13 +5,19 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import researchersData from "../data/researchers.json"
 
-// Build a lookup: lowercased name -> full researcher record.
-// Lets us match the legacy frontmatter shape `{ name, profileUrl }`
-// against the centralized JSON without changing any markdown.
-const RESEARCHERS_BY_NAME = Object.values(researchersData).reduce((acc, r) => {
-  if (r?.name) acc[r.name.toLowerCase()] = r
-  return acc
-}, {})
+// researchers.json shape: { "researchers": [ { slug, name, photo, ... } ] }
+const RESEARCHERS = Array.isArray(researchersData?.researchers)
+  ? researchersData.researchers
+  : []
+
+// Lookups so we can resolve either an id/slug-based frontmatter entry
+// or a legacy { name, profileUrl } entry against the central JSON.
+const RESEARCHERS_BY_SLUG = Object.fromEntries(
+  RESEARCHERS.filter(r => r?.slug).map(r => [r.slug, r])
+)
+const RESEARCHERS_BY_NAME = Object.fromEntries(
+  RESEARCHERS.filter(r => r?.name).map(r => [r.name.toLowerCase(), r])
+)
 
 const LinkedInIcon = () => (
   <svg
@@ -71,8 +77,8 @@ const Researchers = ({ researchers }) => {
   // We resolve to a researchersData record if possible, otherwise fall back
   // to the legacy plain-link treatment so old posts keep rendering.
   const resolved = researchers.map(r => {
-    if (r?.id && researchersData[r.id]) {
-      return { kind: "full", data: researchersData[r.id] }
+    if (r?.id && RESEARCHERS_BY_SLUG[r.id]) {
+      return { kind: "full", data: RESEARCHERS_BY_SLUG[r.id] }
     }
     if (r?.name) {
       const match = RESEARCHERS_BY_NAME[r.name.toLowerCase()]

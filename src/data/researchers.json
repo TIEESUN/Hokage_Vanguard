@@ -1,20 +1,24 @@
 {
-  "muhammad-sawood": {
-    "name": "Muhammad Sawood",
-    "photo": "/assets/sawood.png",
-    "title": "Threat Intelligence Analyst | Adversary Hunter | Security Researcher",
-    "bio": "Experienced Threat Intelligence Analyst and Adversary Hunter specializing in uncovering APT group infrastructures. As a Security Researcher, I share in-depth insights and discoveries through published research on diverse cybersecurity topics.",
-    "linkedinUrl": "https://www.linkedin.com/in/muhammadsawood/",
-    "githubUrl": "https://github.com/TIEESUN",
-    "twitterUrl": "https://twitter.com/TIE__SUN"
-  },
-  "sarah-jawaid": {
-    "name": "Sarah Jawaid",
-    "photo": "/assets/sarah.jpg",
-    "title": "Intelligence Analyst | Threat Researcher",
-    "bio": "Threat Researcher and Intelligence Analyst focused on turning complex cyber threats into clear, actionable intelligence that helps organizations stay ahead of adversaries.",
-    "linkedinUrl": "https://www.linkedin.com/in/sarahjawaid/",
-    "githubUrl": "https://github.com/sarr266",
-    "twitterUrl": ""
-  }
+  "researchers": [
+    {
+      "slug": "muhammad-sawood",
+      "name": "Muhammad Sawood",
+      "photo": "/assets/sawood.png",
+      "title": "Threat Intelligence Analyst | Adversary Hunter | Security Researcher",
+      "bio": "Experienced Threat Intelligence Analyst and Adversary Hunter specializing in uncovering APT group infrastructures. As a Security Researcher, I share in-depth insights and discoveries through published research on diverse cybersecurity topics.",
+      "linkedinUrl": "https://www.linkedin.com/in/muhammadsawood/",
+      "githubUrl": "https://github.com/TIEESUN",
+      "twitterUrl": "https://twitter.com/TIE__SUN"
+    },
+    {
+      "slug": "sarah-jawaid",
+      "name": "Sarah Jawaid",
+      "photo": "/assets/sarah.jpg",
+      "title": "Intelligence Analyst | Threat Researcher",
+      "bio": "Threat Researcher and Intelligence Analyst focused on turning complex cyber threats into clear, actionable intelligence that helps organizations stay ahead of adversaries.",
+      "linkedinUrl": "https://www.linkedin.com/in/sarahjawaid/",
+      "githubUrl": "https://github.com/sarr266",
+      "twitterUrl": ""
+    }
+  ]
 }
