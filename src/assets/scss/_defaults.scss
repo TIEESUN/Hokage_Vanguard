@@ -1,0 +1,10 @@
+// Base resets are handled in style.scss for the new dark/glass theme.
+// This file is kept for compatibility with the SCSS import chain.
+
+code {
+  font-family: var(--font-family-mono);
+}
+
+main p {
+  line-height: 1.6;
+}

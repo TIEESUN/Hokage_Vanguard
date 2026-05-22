@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "title": "Hokage Vanguard",
+    "titleTemplate": "%s",
+    "description": "",
+    "siteUrl": "https://hokagevanguard.netlify.app",
+    "image": "/assets/5fbba8df61dd0f1a9d5b6fd16a4e270e.jpg",
+    "iconimage": "/assets/5fbba8df61dd0f1a9d5b6fd16a4e270e.jpg",
+    "twitterUsername": ""
+  },
+  "ga": "UA-XXXXXXXXX-X"
+}

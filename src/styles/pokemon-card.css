@@ -1,0 +1,293 @@
+/* ═══════════════════════════════════════════════════════
+   HOKAGE VANGUARD — HOLOGRAPHIC CARD (v8 — larger spec)
+   Plain global CSS. Imported in gatsby-browser.js.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── OUTER HIT AREA ──────────────────────────────────────── */
+.hv-card-hit {
+  position: relative;
+  width: 100%;
+  box-sizing: content-box;
+  aspect-ratio: 660 / 921;
+  border: 12px solid transparent;
+  border-radius: 26px;
+  user-select: none;
+  touch-action: none;
+}
+
+.hv-card-hit .hv-card {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+}
+
+/* ── INNER CARD ───────────────────────────────────────────── */
+.hv-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 660 / 921;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.80),
+    0 0 0 1px rgba(255, 255, 255, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-from-center: 0;
+  --card-opacity: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --translate-x: 0px;
+  --translate-y: 0px;
+  --card-scale: 1;
+  --mask: none;
+  --foil: none;
+  --background-x: 50%;
+  --background-y: 50%;
+  --space: 5%;
+  --angle: 133deg;
+  --imgsize: cover;
+  --hyp: 0;
+  --o: 0;
+  --sp1: hsl(0 100% 65%);
+  --sp2: hsl(15 90% 55%);
+  --sp3: hsl(340 80% 50%);
+  --sp4: hsl(0 70% 40%);
+  --sp5: hsl(20 100% 60%);
+  --sp6: hsl(350 90% 55%);
+  --glare-brightness: 1.25;
+
+  user-select: none;
+  touch-action: none;
+}
+
+.hv-card[data-parallax="true"] {
+  transform:
+    perspective(900px)
+    translate3d(var(--translate-x), var(--translate-y), 0)
+    rotateX(var(--rotate-x))
+    rotateY(var(--rotate-y))
+    scale(var(--card-scale));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── LAYER 1: BASE + AVATAR ───────────────────────────────── */
+.hv-card-base {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: radial-gradient(ellipse at 35% 15%, #2a0000 0%, #120000 45%, #060000 100%);
+}
+
+.hv-card-base img {
+  width: 100%;
+  height: 55%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  flex-shrink: 0;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+}
+
+/* ── LAYER 2: FOIL ────────────────────────────────────────── */
+.hv-card-foil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--foil);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: var(--pointer-x) var(--pointer-y);
+  opacity: 0.05;
+  mix-blend-mode: screen;
+  transition: opacity 1s ease;
+}
+
+/* ── LAYER 3: HOLO SHINE ──────────────────────────────────── */
+.hv-card-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(0.15 + (var(--card-opacity) * 0.55));
+  mix-blend-mode: color-dodge;
+  transition: opacity 180ms ease;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      var(--sp1) calc(var(--space) * 1),
+      var(--sp2) calc(var(--space) * 2),
+      var(--sp3) calc(var(--space) * 3),
+      var(--sp4) calc(var(--space) * 4),
+      var(--sp5) calc(var(--space) * 5),
+      var(--sp6) calc(var(--space) * 6),
+      var(--sp1) calc(var(--space) * 7)
+    ),
+    repeating-linear-gradient(
+      var(--angle),
+      rgba(30, 0, 0, 1) 0%,
+      hsl(0 20% 55%) 3.8%,
+      hsl(0 35% 62%) 4.5%,
+      hsl(0 20% 55%) 5.2%,
+      rgba(30, 0, 0, 1) 10%,
+      rgba(30, 0, 0, 1) 12%
+    ),
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x) var(--pointer-y),
+      hsla(0 0% 0% / 0.1) 12%,
+      hsla(0 0% 0% / 0.15) 20%,
+      hsla(0 0% 0% / 0.25) 120%
+    );
+  background-position:
+    0% var(--background-y),
+    calc(var(--background-x) + (var(--background-y) * 0.2)) var(--background-y),
+    var(--background-x) var(--background-y);
+  background-blend-mode: soft-light, screen, overlay;
+  background-size: 260% 900%, 380% 120%, 260% 120%;
+  filter:
+    brightness(calc((var(--hyp) + 0.7) * 0.75))
+    contrast(2.5)
+    saturate(0.9);
+  will-change: transform, opacity, background-position, filter;
+}
+
+/* ── LAYER 4: GLARE ───────────────────────────────────────── */
+.hv-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: calc(var(--card-opacity) * 0.3);
+  transition: opacity 180ms ease;
+  transform: translateZ(1.41px);
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    hsl(0, 30%, 75%) 0%,
+    hsl(0, 10%, 30%) 50%,
+    hsl(0, 50%, 8%) 150%
+  );
+  background-size: 120% 150%;
+  background-position: center center;
+  mix-blend-mode: hard-light;
+  filter: brightness(var(--glare-brightness)) contrast(1.2);
+  backdrop-filter: brightness(0.8) contrast(1.25) saturate(1.25);
+  will-change: transform, opacity, background-position, filter;
+}
+
+/* ── LAYER 5: EDGE SHIMMER ────────────────────────────────── */
+.hv-card-shine-edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(var(--card-opacity) * 0.65);
+  transition: opacity 180ms ease;
+  background: radial-gradient(
+    120% 80% at var(--pointer-x) var(--pointer-y),
+    rgba(255, 180, 180, 0.16) 0%,
+    rgba(200, 140, 140, 0.07) 22%,
+    rgba(0, 0, 0, 0) 58%
+  );
+  mix-blend-mode: screen;
+  filter: blur(0.6px);
+}
+
+/* ── LAYER 6: TEXT CONTENT ────────────────────────────────── */
+.hv-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  top: 55%;
+  z-index: 10;
+  padding: 1.1rem 1.6rem 1.4rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88) 0%, rgba(4, 0, 0, 0.98) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.48rem;
+}
+
+.hv-card-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.hv-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.hv-card-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(180, 20, 20, 0.65), transparent);
+  flex-shrink: 0;
+  margin: 0.08rem 0;
+}
+
+.hv-card-bio {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.70);
+  line-height: 1.60;
+  flex: 1;
+  margin: 0;
+}
+
+.hv-card-socials {
+  display: flex;
+  flex-direction: row;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.hv-card-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.80);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.hv-card-social-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hv-card-social-btn:hover {
+  background: rgba(139, 0, 0, 0.45);
+  color: #ffffff;
+  border-color: rgba(180, 20, 20, 0.55);
+  transform: scale(1.12);
+}
+
+/* Idle float */
+@keyframes hvCardFloat {
+  0%, 100% { transform: perspective(900px) translateY(0px); }
+  50%       { transform: perspective(900px) translateY(-8px); }
+}
+.hv-card-hit:not(:hover) .hv-card {
+  animation: hvCardFloat 4s ease-in-out infinite;
+}
