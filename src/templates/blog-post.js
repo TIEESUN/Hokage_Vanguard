@@ -77,13 +77,32 @@ const Researchers = ({ researchers }) => {
   // We resolve to a researchersData record if possible, otherwise fall back
   // to the legacy plain-link treatment so old posts keep rendering.
   const resolved = researchers.map(r => {
-    if (r?.id && RESEARCHERS_BY_SLUG[r.id]) {
-      return { kind: "full", data: RESEARCHERS_BY_SLUG[r.id] }
+    // Find a matching record in researchers.json (by id/slug, or by name).
+    let baseData = null
+    if (r?.id && RESEARCHERS_BY_SLUG[r.id]) baseData = RESEARCHERS_BY_SLUG[r.id]
+    else if (r?.name) baseData = RESEARCHERS_BY_NAME[r.name.toLowerCase()] || null
+
+    if (baseData) {
+      // If the post supplied an inline photo, it overrides the JSON's photo.
+      const data = r?.photo ? { ...baseData, photo: r.photo } : baseData
+      return { kind: "full", data }
     }
-    if (r?.name) {
-      const match = RESEARCHERS_BY_NAME[r.name.toLowerCase()]
-      if (match) return { kind: "full", data: match }
+
+    // No JSON match. If the post supplied at least a name + photo, still
+    // render the card using just the inline data.
+    if (r?.name && r?.photo) {
+      return {
+        kind: "full",
+        data: {
+          name: r.name,
+          photo: r.photo,
+          title: r.title || "",
+          linkedinUrl: r.profileUrl || "",
+        },
+      }
     }
+
+    // Fall back to the legacy plain-link pill.
     return { kind: "legacy", data: r }
   })
 
@@ -191,6 +210,7 @@ export const pageQuery = graphql`
           name
           title
           profileUrl
+          photo
         }
         featuredImage {
           childImageSharp {

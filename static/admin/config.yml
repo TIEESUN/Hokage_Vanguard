@@ -45,19 +45,20 @@ collections:
         fields:
           - { label: "Name", name: "name", widget: "string", hint: "Full name" }
           - { label: "Profile URL", name: "profileUrl", widget: "string", required: false, hint: "Link to profile" }
+          - { name: "photo", label: "Author Photo", widget: "image", required: false, hint: "Optional — overrides the photo from Contributor Cards if set" }
       
       - { label: "Body", name: "body", widget: "markdown", hint: "Main content goes here." }
 
   - name: authors
-    label: "Author Profiles"
+    label: "Contributor Cards"
     files:
       - name: researchers
-        label: "Authors"
+        label: "Contributors"
         file: "src/data/researchers.json"
         fields:
           - name: researchers
-            label: "Authors"
-            label_singular: "Author"
+            label: "Contributors"
+            label_singular: "Contributor"
             widget: list
             fields:
               - { name: name, label: "Full Name", widget: string }

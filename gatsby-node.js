@@ -17,6 +17,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       name: String
       title: String
       profileUrl: String
+      photo: String
     }
   `)
 
