@@ -6,6 +6,13 @@ date: 2026-10-03 11:37
 description: Bitget lost $388M in 2026 without a single private key stolen.
   Inside the transaction spoofing attack that exploited the authorization trust
   gap and drained hot wallets.
+researchers:
+  - name: Muhammad Sawood
+    profileUrl: https://www.linkedin.com/in/muhammadsawood
+    photo: /assets/sawood.png
+  - name: Sarah Jawaid
+    profileUrl: https://www.linkedin.com/in/sarahjawaid/
+    photo: /assets/sarah.jpg
 ---
 Imagine a bank heist. In the movies, they drill through vaults, blow up safes, or hold tellers at gunpoint. But what if the world's most successful bank robbery didn't involve a single explosive or a single gun? What if the robbers simply walked into the bank's back office, filled out a perfectly legitimate-looking withdrawal slip, and handed it to a teller who processed it without question?
 
