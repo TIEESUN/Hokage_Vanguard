@@ -1,7 +1,7 @@
 ---
 template: blog-post
 title: How Hackers Robbed Bitget of $388 Million Without Breaking a Single Lock
-slug: how-hackers-robbed-bitget-of-388-million-without-breaking-a-single-lock
+slug: /how-hackers-robbed-bitget-of-388-million-without-breaking-a-single-lock
 date: 2026-10-03 11:37
 description: Bitget lost $388M in 2026 without a single private key stolen.
   Inside the transaction spoofing attack that exploited the authorization trust
