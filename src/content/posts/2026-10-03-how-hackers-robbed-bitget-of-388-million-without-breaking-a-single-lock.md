@@ -6,23 +6,20 @@ date: 2026-10-03 11:37
 description: Bitget lost $388M in 2026 without a single private key stolen.
   Inside the transaction spoofing attack that exploited the authorization trust
   gap and drained hot wallets.
+featuredImage: /assets/whatsapp-image-2026-10-04-at-10.42.32.jpeg
 researchers:
   - name: Muhammad Sawood
     profileUrl: https://www.linkedin.com/in/muhammadsawood
-    photo: /assets/sawood.png
+    photo: /assets/sawood_research.png
   - name: Sarah Jawaid
     profileUrl: https://www.linkedin.com/in/sarahjawaid/
-    photo: /assets/sarah.jpg
+    photo: /assets/sarah.png
 ---
 Imagine a bank heist. In the movies, they drill through vaults, blow up safes, or hold tellers at gunpoint. But what if the world's most successful bank robbery didn't involve a single explosive or a single gun? What if the robbers simply walked into the bank's back office, filled out a perfectly legitimate-looking withdrawal slip, and handed it to a teller who processed it without question?
 
 That is not fiction. That is exactly what happened to Bitget, one of the world's largest cryptocurrency exchanges, on September 24, 2026. In the span of a few hours, attackers drained approximately **$388 million** from the exchange's wallets. But here is the twist. They didn't steal a single private key. They didn't break a single cryptographic lock. They simply lied to the system, and the system believed them.
 
 This is the story of the Bitget hack. How it started, what they did, and how they did it. But to understand the heist, you first need to understand the bank.
-
-
-
-
 
 **The Three Vaults: Hot, Warm, and Cold Wallets**
 
@@ -36,11 +33,10 @@ The **warm wallet** is the middle ground, a secure room inside the bank that req
 
 On September 24, the attackers did not touch the cold wallet. The vault was never breached. They targeted the systems that manage the hot and warm wallets, the digital cash drawers and the internal approval process.
 
-
-
-
 ![FIGURE 1: The Three-Tier Wallet Architecture](/assets/bitget_fig_1.png "FIGURE 1: The Three-Tier Wallet Architecture")
 
+*FIGURE 1: The Three-Tier Wallet Architecture*\
+\
 **The Entry Point: A Flaw in a Third-Party Tool**
 
 The attack did not start with a sophisticated brute-force attack on Bitget's own code. It started with a **zero-day vulnerability** in a third-party security product that Bitget was using. A zero-day is a flaw that the vendor does not know about yet. There is no patch, no fix, no defense. The attackers exploited this flaw to gain **high-level administrative credentials** on Bitget's internal network. They did not need to guess passwords or trick an employee. The vulnerability handed them the keys to the back office.
@@ -49,11 +45,10 @@ According to SlowMist's investigation, the attackers were inside Bitget's system
 
 This is a crucial detail. The attackers were not rushing. They spent nearly four weeks inside the network, mapping the terrain, identifying the systems they needed, and preparing their tools. They moved with patience, and that patience paid off.
 
-
-
-
 ![FIGURE 2: The Initial Access Timeline](/assets/bitget_fig_2.png "FIGURE 2: The Initial Access Timeline")
 
+*FIGURE 2: The Initial Access Timeline*\
+\
 **The Test Run: The Two Small Transfers**
 
 Before executing the main heist, the attackers did something that every skilled bank robber does. They tested the alarm system.
@@ -67,11 +62,10 @@ These amounts were deliberately tiny. They fell **below Bitget's risk-control th
 
 The answer was yes.
 
-
-
-
 ![FIGURE 3: The Test Transfer Flow](/assets/bitget_fig_3.png "FIGURE 3: The Test Transfer Flow")
 
+*FIGURE 3: The Test Transfer Flow*\
+\
 **The Heist: "Transaction Spoofing Payout Order"**
 
 At **17:49 UTC**, the attackers began the main operation. Using an internal employee's identity, they entered the management platform of a second vendor tool and made three straight attempts to inject system commands. They then deployed a **highly customized withdrawal tool**, a piece of software later recovered from files the attacker deleted, that forged risk-control parameters, built withdrawal requests, and triggered the withdrawal process itself.
@@ -94,13 +88,14 @@ The attackers did not break the lock. They **fooled the person holding the key**
 
 ![FIGURE 4: The Transaction Spoofing Attack, The Authorization Trust Gap](/assets/bitget_fig_4.png "FIGURE 4: The Transaction Spoofing Attack, The Authorization Trust Gap")
 
+*FIGURE 4: The Transaction Spoofing Attack, The Authorization Trust Gap*\
+\
 **The Attack Vector: A Visual Flow**
-
-
-
 
 ![FIGURE 5: Full Attack Chain, From Initial Access to Laundering](/assets/bitget_fig_5.png "FIGURE 5: Full Attack Chain, From Initial Access to Laundering")
 
+*FIGURE 5: Full Attack Chain, From Initial Access to Laundering*\
+\
 **The Getaway: The Laundering Operation**
 
 Stealing the money was only half the job. The attackers now had $388 million in stolen crypto, and they needed to convert it into something usable without getting caught. This is where the operation gets both sophisticated and sloppy.
@@ -121,11 +116,10 @@ One user, "Cc," complained they sent 277,724 XRP but only 431 was returned. Anot
 
 ZachXBT identified **five aliases** involved in the laundering:
 
-
-
-
 ![FIGURE 6: Five launderer aliases linked to the Bitget hack via public Discord and Telegram channels by ZachXBT](/assets/deepseek_mermaid_20261003_8cdffd.png "FIGURE 6: Five launderer aliases linked to the Bitget hack via public Discord and Telegram channels by ZachXBT")
 
+*FIGURE 6: Five launderer aliases linked to the Bitget hack via public Discord and Telegram channels by [ZachXBT](https://x.com/zachxbt/status/2104528688469647700?s=20)*\
+\
 The most significant finding is **Alias 4 ("lolo" / "Marin")**. This individual was also involved in laundering funds from the **$292 million Kelp DAO exploit** earlier in 2026. This is not a coincidence. It indicates that these launderers are not one-off hires but part of a **recurring, professional network** that North Korean hackers use repeatedly.
 
 **The THORChain Controversy**
@@ -134,8 +128,12 @@ Bitget CEO Gracy Chen publicly called on THORChain to refuse service to the atta
 
 ![FIGURE 7: The Laundering Pipeline, Following the Money](/assets/bitget_fig_6.png "FIGURE 7: The Laundering Pipeline, Following the Money")
 
+*FIGURE 7: The Laundering Pipeline, Following the Money*
+
 ![FIGURE 8: The Launderer Network, Five Aliases, One Recurring Name](/assets/bitget_fig_7.png "FIGURE 8: The Launderer Network, Five Aliases, One Recurring Name")
 
+*FIGURE 8: The Launderer Network, Five Aliases, One Recurring Name*\
+\
 **The New Threat: JINX-0164**
 
 While the Bitget hack dominates headlines, a new threat actor has been targeting the cryptocurrency industry with a different, equally dangerous approach. In May 2026, Wiz Research identified a previously unreported actor tracked as **JINX-0164**.
@@ -150,8 +148,10 @@ JINX-0164 is **financially motivated** and has been active since at least mid-20
 
 JINX-0164 represents a different attack surface: the **developer workstation**. While the Bitget attackers targeted the backend infrastructure, JINX-0164 targets the humans who build it. Both are dangerous. Both are effective. And both are part of a broader trend. Attackers are no longer breaking down the door. They are walking in through the front, dressed as trusted colleagues.
 
+![FIGURE 9: JINX-0164, The Developer Workstation Attack Note: All names, profiles, handles, and other identifying details shown in this figure are fictional and used for illustrative purposes only.](/assets/bitget_fig_8_pt2.png "FIGURE 9: JINX-0164, The Developer Workstation Attack Note: All names, profiles, handles, and other identifying details shown in this figure are fictional and used for illustrative purposes only.")
 
-<img to be inserted here>\
+*FIGURE 9: JINX-0164, The Developer Workstation Attack*\
+*(Note: All names, profiles, handles, and other identifying details shown in this figure are fictional and used for illustrative purposes only)*\
 \
 **The Lesson: The Authorization Trust Gap**
 
@@ -163,8 +163,9 @@ The defense is **continuous integrity checks** that validate the data itself, in
 
 The Bybit hack of February 2025 used a similar principle. The AFX hack of July 2025 did too. The Bitget hack of September 2026 is the third in a series. The Lazarus Group has industrialized this technique. Defenders must match that pace.
 
+![FIGURE 10: The Authorization Trust Gap, Defense Concept](/assets/bitget_fig_9.png "FIGURE 10: The Authorization Trust Gap, Defense Concept")
 
-<img to be inserted here>\
+*FIGURE 10: The Authorization Trust Gap, Defense Concept*\
 \
 **Conclusion**
 
